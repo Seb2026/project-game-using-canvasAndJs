@@ -22,8 +22,7 @@ const startGame = () => {
     // introText();
     // setInterval(clearAll, 5000);
     drawBackground();
-    movePlayerDown();
-    setInterval(StartGame, 1500);
+    requestAnimationFrame(startGame);
 }
 
 const clearAll = () => {
@@ -50,9 +49,14 @@ const drawBackground = () => {
 // movements
 document.addEventListener(`keydown`, event => {
     switch(event.code){
-        case `Space`:
-            if(covid19Obj.x <= 800 && covid19Obj.y >= 25 )
+        case `ArrowUp`:
+            if(covid19Obj.y >= 25)
             covid19Obj.y -= 50;
+            break;
+        case `ArrowDown`:
+            console.log(covid19Obj.y);
+            if(covid19Obj.y <= 350)
+            covid19Obj.y += 50;
             break;
         default:
             console.log(`You must use ONLY space!`);
@@ -69,11 +73,6 @@ document.addEventListener(`keydown`, event => {
 // auto move player
 
 
-// const movePlayerDown = () => {
-//     if(covid19Obj.y <= 500){
-//         covid19Obj.y += 2;
-//     }
 
-// }
 
 

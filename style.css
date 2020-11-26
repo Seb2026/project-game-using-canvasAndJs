@@ -20,3 +20,7 @@ body{
     align-items: center;
     color: white;
 }
+
+img {
+    width: 50px;
+}
