@@ -11,6 +11,13 @@ const covid19Obj = {
     
 };
 
+const whiteBloodObj = {
+    x: 650,
+    y: 250,
+    width: 100,
+    height: 100
+};
+
 
 
 const startBtn = document.querySelector(`.btn`);
@@ -66,7 +73,8 @@ document.addEventListener(`keydown`, event => {
 const whiteBloodCell = () => {
     const whiteBloodImg = new Image();
     whiteBloodImg.src = `./Images/white-blood-cell.png`;
-    context.drawImage(whiteBloodImg, 650, 250, 100, 100);
+    context.drawImage(whiteBloodImg, whiteBloodObj.x, whiteBloodObj.y, whiteBloodObj.width, whiteBloodObj.height);
+    whiteBloodObj.x -= 4;
 }
 
 // auto move player
