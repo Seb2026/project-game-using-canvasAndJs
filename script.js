@@ -22,6 +22,7 @@ const startGame = () => {
     // introText();
     // setInterval(clearAll, 5000);
     drawBackground();
+    whiteBloodCell();
     requestAnimationFrame(startGame);
 }
 
@@ -54,7 +55,6 @@ document.addEventListener(`keydown`, event => {
             covid19Obj.y -= 50;
             break;
         case `ArrowDown`:
-            console.log(covid19Obj.y);
             if(covid19Obj.y <= 350)
             covid19Obj.y += 50;
             break;
@@ -63,12 +63,11 @@ document.addEventListener(`keydown`, event => {
     }
 });
 
-// const whiteBloodCell = () => {
-//     const whiteBloodImg = new Image();
-//     whiteBloodImg.src = `./Images/white-blood-cell.png`;
-//     random
-//     context.drawImage(whiteBloodImg, 
-// }
+const whiteBloodCell = () => {
+    const whiteBloodImg = new Image();
+    whiteBloodImg.src = `./Images/white-blood-cell.png`;
+    context.drawImage(whiteBloodImg, 650, 250, 100, 100);
+}
 
 // auto move player
 
