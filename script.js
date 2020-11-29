@@ -15,8 +15,10 @@ const whiteBloodObj = {
     x: 650,
     y: 250,
     width: 100,
-    height: 100
+    height: 100,
+    img: new Image()
 };
+whiteBloodObj.img.src = `./Images/white-blood-cell.png`;
 
 
 
@@ -66,18 +68,22 @@ document.addEventListener(`keydown`, event => {
             covid19Obj.y += 50;
             break;
         default:
-            console.log(`You must use ONLY space!`);
+            console.log(`You must use ONLY up and down arrow!`);
     }
 });
 
+//obstacle
+const whiteBloodArr = [];
+
 const whiteBloodCell = () => {
-    const whiteBloodImg = new Image();
-    whiteBloodImg.src = `./Images/white-blood-cell.png`;
-    context.drawImage(whiteBloodImg, whiteBloodObj.x, whiteBloodObj.y, whiteBloodObj.width, whiteBloodObj.height);
-    whiteBloodObj.x -= 4;
+    whiteBloodArr.push(whiteBloodObj);
+    whiteBloodArr.forEach((elem) => {
+        elem.context.drawImage(whiteBloodObj.img, whiteBloodObj.x, whiteBloodObj.y, whiteBloodObj.width, whiteBloodObj.height);
+    });
+    whiteBloodObj.x -= 0.7;
+
 }
 
-// auto move player
 
 
 
