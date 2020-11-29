@@ -20,6 +20,8 @@ const whiteBloodObj = {
 };
 whiteBloodObj.img.src = `./Images/white-blood-cell.png`;
 
+const whiteBloodArr = [];
+
 
 
 const startBtn = document.querySelector(`.btn`);
@@ -29,10 +31,7 @@ startBtn.addEventListener(`click`, () => {
 
 const startGame = () => {
     // introText();
-    // setInterval(clearAll, 5000);
-    drawBackground();
-    whiteBloodCell();
-    requestAnimationFrame(startGame);
+    setInterval(drawEverything, 50);
 }
 
 const clearAll = () => {
@@ -46,13 +45,17 @@ const clearAll = () => {
 // }
 
 
-const drawBackground = () => {
+const drawEverything = () => {
     const backgroundImg = new Image();
     backgroundImg.src = `./Images/covid-background-inside-body.jpg`;
     context.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
     const covid19Img = new Image();
     covid19Img.src = `./Images/covid-19.png`;
     context.drawImage(covid19Img, covid19Obj.x, covid19Obj.y, covid19Obj.width, covid19Obj.height);
+    whiteBloodArr.push(whiteBloodObj);
+    whiteBloodArr.forEach((elem) => {
+        drawWhiteBlood(elem);
+    });
 
 }
 
@@ -73,16 +76,19 @@ document.addEventListener(`keydown`, event => {
 });
 
 //obstacle
-const whiteBloodArr = [];
-
-const whiteBloodCell = () => {
-    whiteBloodArr.push(whiteBloodObj);
-    whiteBloodArr.forEach((elem) => {
-        elem.context.drawImage(whiteBloodObj.img, whiteBloodObj.x, whiteBloodObj.y, whiteBloodObj.width, whiteBloodObj.height);
-    });
-    whiteBloodObj.x -= 0.7;
+const drawWhiteBlood = (object) => {
+    object.x -= 0.2;
+    context.drawImage(object.img, object.x, object.y, object.width, object.height);
 
 }
+
+
+// const whiteBloodCell = () => {
+//     whiteBloodArr.push(whiteBloodObj);
+//     whiteBloodArr.forEach((elem) => {
+//         drawWhiteBlood(elem);
+//     });
+// }
 
 
 
