@@ -30,6 +30,12 @@ const whiteBloodObjs = () => {
 const whiteBloodObj1 = whiteBloodObjs();
 const whiteBloodObj2 = whiteBloodObjs();
 const whiteBloodObj3 = whiteBloodObjs();
+const whiteBloodObj4 = whiteBloodObjs();
+const whiteBloodObj5 = whiteBloodObjs();
+const whiteBloodObj6 = whiteBloodObjs();
+const whiteBloodObj7 = whiteBloodObjs();
+const whiteBloodObj8 = whiteBloodObjs();
+const whiteBloodObj9 = whiteBloodObjs();
 
 
 
@@ -127,8 +133,62 @@ const whiteBloodCell3 = () => {
     whiteBloodArr.push(whiteBloodObj3);
 }
 
+const randomY4 = 100 + Math.random() * 300;
+const randomWidth4 = 60 + Math.random() * 150;
+const randomHeight4 = 50 + Math.random() * 150;
+const whiteBloodCell4 = () => {
+    whiteBloodObj4.y = randomY4;
+    whiteBloodObj4.width = randomWidth4;
+    whiteBloodObj4.height = randomHeight4;
+    whiteBloodArr.push(whiteBloodObj4);
+}
 
+const randomY5 = 100 + Math.random() * 300;
+const randomWidth5 = 60 + Math.random() * 150;
+const randomHeight5 = 50 + Math.random() * 150;
+const whiteBloodCell5 = () => {
+    whiteBloodObj5.y = randomY5;
+    whiteBloodObj5.width = randomWidth5;
+    whiteBloodObj5.height = randomHeight5;
+    whiteBloodArr.push(whiteBloodObj5);
+}
 
+const randomY6 = 100 + Math.random() * 300;
+const randomWidth6 = 60 + Math.random() * 150;
+const randomHeight6 = 50 + Math.random() * 150;
+const whiteBloodCell6 = () => {
+    whiteBloodObj6.y = randomY6;
+    whiteBloodObj6.width = randomWidth6;
+    whiteBloodObj6.height = randomHeight6;
+    whiteBloodArr.push(whiteBloodObj6);
+}
 
+const randomY7 = 100 + Math.random() * 300;
+const randomWidth7 = 60 + Math.random() * 150;
+const randomHeight7 = 50 + Math.random() * 150;
+const whiteBloodCell7 = () => {
+    whiteBloodObj7.y = randomY7;
+    whiteBloodObj7.width = randomWidth7;
+    whiteBloodObj7.height = randomHeight7;
+    whiteBloodArr.push(whiteBloodObj7);
+}
 
+const randomY8 = 100 + Math.random() * 300;
+const randomWidth8 = 60 + Math.random() * 150;
+const randomHeight8 = 50 + Math.random() * 150;
+const whiteBloodCell8 = () => {
+    whiteBloodObj8.y = randomY8;
+    whiteBloodObj8.width = randomWidth8;
+    whiteBloodObj8.height = randomHeight8;
+    whiteBloodArr.push(whiteBloodObj8);
+}
 
+const randomY9 = 100 + Math.random() * 300;
+const randomWidth9 = 60 + Math.random() * 150;
+const randomHeight9 = 50 + Math.random() * 150;
+const whiteBloodCell9 = () => {
+    whiteBloodObj9.y = randomY9;
+    whiteBloodObj9.width = randomWidth9;
+    whiteBloodObj9.height = randomHeight9;
+    whiteBloodArr.push(whiteBloodObj9);
+}
