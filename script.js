@@ -53,13 +53,13 @@ const startGame = () => {
     setInterval(drawEverything, 50);
     setInterval(whiteBloodCell, 500);
     setInterval(whiteBloodCell2, 500);
-    setInterval(whiteBloodCell3, 3000);
-    setInterval(whiteBloodCell4, 9000);
-    setInterval(whiteBloodCell5, 13000);
-    setInterval(whiteBloodCell6, 13900);
-    setInterval(whiteBloodCell7, 19000);
-    setInterval(whiteBloodCell8, 23000);
-    setInterval(whiteBloodCell9, 27000);
+    setInterval(whiteBloodCell3, 599);
+    setInterval(whiteBloodCell4, 500);
+    setInterval(whiteBloodCell5, 500);
+    setInterval(whiteBloodCell6, 1500);
+    setInterval(whiteBloodCell7, 1200);
+    setInterval(whiteBloodCell8, 500);
+    setInterval(whiteBloodCell9, 1000);
 }
 
 const clearAll = () => {
@@ -89,11 +89,11 @@ const drawEverything = () => {
 // movements
 document.addEventListener(`keydown`, event => {
     switch(event.code){
-        case `ArrowUp`:
+        case `KeyW`:
             if(covid19Obj.y >= 25)
             covid19Obj.y -= 50;
             break;
-        case `ArrowDown`:
+        case `KeyS`:
             if(covid19Obj.y <= 350)
             covid19Obj.y += 50;
             break;
@@ -104,7 +104,7 @@ document.addEventListener(`keydown`, event => {
 
 //obstacle
 const drawWhiteBlood = (object) => {
-    object.x -= 2;
+    object.x -= 3;
     context.drawImage(object.img, object.x, object.y, object.width, object.height);
 
 }
@@ -135,75 +135,86 @@ const randomY3 = 100 + Math.random() * 300;
 const randomWidth3 = 60 + Math.random() * 150;
 const randomHeight3 = 50 + Math.random() * 150;
 const whiteBloodCell3 = () => {
-    if(whiteBloodObj2.x < 600)
-    whiteBloodObj3.y = randomY3;
-    whiteBloodObj3.width = randomWidth3;
-    whiteBloodObj3.height = randomHeight3;
-    whiteBloodArr.push(whiteBloodObj3);
+    if(whiteBloodObj2.x < 600){
+        whiteBloodObj3.y = randomY3;
+        whiteBloodObj3.width = randomWidth3;
+        whiteBloodObj3.height = randomHeight3;
+        whiteBloodArr.push(whiteBloodObj3);
+    }
 }
 
 const randomY4 = 100 + Math.random() * 300;
 const randomWidth4 = 60 + Math.random() * 150;
 const randomHeight4 = 50 + Math.random() * 150;
 const whiteBloodCell4 = () => {
-    if(whiteBloodObj3.x < 600)
-    whiteBloodObj4.y = randomY4;
-    whiteBloodObj4.width = randomWidth4;
-    whiteBloodObj4.height = randomHeight4;
-    whiteBloodArr.push(whiteBloodObj4);
+    if(whiteBloodObj3.x < 600){
+        whiteBloodObj4.y = randomY4;
+        whiteBloodObj4.width = randomWidth4;
+        whiteBloodObj4.height = randomHeight4;
+        whiteBloodArr.push(whiteBloodObj4);
+    }
 }
 
 const randomY5 = 100 + Math.random() * 300;
 const randomWidth5 = 60 + Math.random() * 150;
 const randomHeight5 = 50 + Math.random() * 150;
 const whiteBloodCell5 = () => {
-    if(whiteBloodObj4.x < 600)
-    whiteBloodObj5.y = randomY5;
-    whiteBloodObj5.width = randomWidth5;
-    whiteBloodObj5.height = randomHeight5;
-    whiteBloodArr.push(whiteBloodObj5);
+    if(whiteBloodObj4.x < 600){
+        whiteBloodObj5.y = randomY5;
+        whiteBloodObj5.width = randomWidth5;
+        whiteBloodObj5.height = randomHeight5;
+        whiteBloodArr.push(whiteBloodObj5);
+    }
+
 }
 
 const randomY6 = 100 + Math.random() * 300;
 const randomWidth6 = 60 + Math.random() * 150;
 const randomHeight6 = 50 + Math.random() * 150;
 const whiteBloodCell6 = () => {
-    if(whiteBloodObj5.x < 600)
-    whiteBloodObj6.y = randomY6;
-    whiteBloodObj6.width = randomWidth6;
-    whiteBloodObj6.height = randomHeight6;
-    whiteBloodArr.push(whiteBloodObj6);
+    if(whiteBloodObj5.x < 600){
+        whiteBloodObj6.y = randomY6;
+        whiteBloodObj6.width = randomWidth6;
+        whiteBloodObj6.height = randomHeight6;
+        whiteBloodArr.push(whiteBloodObj6);
+    }
 }
 
 const randomY7 = 100 + Math.random() * 300;
 const randomWidth7 = 60 + Math.random() * 150;
 const randomHeight7 = 50 + Math.random() * 150;
 const whiteBloodCell7 = () => {
-    if(whiteBloodObj6.x < 600)
-    whiteBloodObj7.y = randomY7;
-    whiteBloodObj7.width = randomWidth7;
-    whiteBloodObj7.height = randomHeight7;
-    whiteBloodArr.push(whiteBloodObj7);
+    if(whiteBloodObj6.x < 600){
+        whiteBloodObj7.y = randomY7;
+        whiteBloodObj7.width = randomWidth7;
+        whiteBloodObj7.height = randomHeight7;
+        whiteBloodArr.push(whiteBloodObj7);
+    }
 }
 
 const randomY8 = 100 + Math.random() * 300;
 const randomWidth8 = 60 + Math.random() * 150;
 const randomHeight8 = 50 + Math.random() * 150;
 const whiteBloodCell8 = () => {
-    if(whiteBloodObj7.x < 600)
-    whiteBloodObj8.y = randomY8;
-    whiteBloodObj8.width = randomWidth8;
-    whiteBloodObj8.height = randomHeight8;
-    whiteBloodArr.push(whiteBloodObj8);
+    if(whiteBloodObj7.x < 600){
+        whiteBloodObj8.y = randomY8;
+        whiteBloodObj8.width = randomWidth8;
+        whiteBloodObj8.height = randomHeight8;
+        whiteBloodArr.push(whiteBloodObj8);
+
+    }
 }
 
 const randomY9 = 100 + Math.random() * 300;
 const randomWidth9 = 60 + Math.random() * 150;
 const randomHeight9 = 50 + Math.random() * 150;
 const whiteBloodCell9 = () => {
-    if(whiteBloodObj8.x < 600)
-    whiteBloodObj9.y = randomY9;
-    whiteBloodObj9.width = randomWidth9;
-    whiteBloodObj9.height = randomHeight9;
-    whiteBloodArr.push(whiteBloodObj9);
+    if(whiteBloodObj8.x < 600){
+        whiteBloodObj9.y = randomY9;
+        whiteBloodObj9.width = randomWidth9;
+        whiteBloodObj9.height = randomHeight9;
+        whiteBloodArr.push(whiteBloodObj9);
+    }
+    
 }
+
