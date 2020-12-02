@@ -29,7 +29,7 @@ const whiteBloodObjs = () => {
 }
 
 const whiteBloodArr = [];
-
+let score = 0;
 
 
 const startBtn = document.querySelector(`.btn`);
@@ -62,13 +62,16 @@ const drawEverything = () => {
     covid19Img.src = `./Images/covid-19.png`;
     context.drawImage(covid19Img, covid19Obj.x, covid19Obj.y, covid19Obj.width, covid19Obj.height);
     whiteBloodArr.forEach((elem, i) => {
-        if(elem.x < -400) {
+        drawWhiteBlood(elem);
+        if(elem.x === -450){
+            score += 1;
             whiteBloodArr.splice(i, 1);
-        } else {
-            drawWhiteBlood(elem);
+            console.log(score);
         }
+        else if(collisionDetection(elem)) {
+            console.log(`HIT`);
+        } 
     });
-
 }
 
 // movements
@@ -96,11 +99,7 @@ const drawWhiteBlood = (object) => {
 
 
 const whiteBloodCell = () => {
-    // whiteBloodObj1.y = 100 + Math.random() * 300;
-    // whiteBloodObj1.width = 60 + Math.random() * 150;
-    // whiteBloodObj1.height = 50 + Math.random() * 150;
-    // for(let i=1; i <= 9; i++){
-        if(whiteBloodArr.length < 5) {
+        if(whiteBloodArr.length < 6) {
             whiteBloodArr.push(whiteBloodObjs())
         }
         
@@ -108,3 +107,18 @@ const whiteBloodCell = () => {
 }
 
 
+
+
+collisionDetection = (covid19Obj) => {
+    if (
+      !(
+        whiteBloodObjs().x < covid19Obj.x + covid19Obj.width ||
+        whiteBloodObjs().x + whiteBloodObjs().width < covid19Obj.x ||
+        whiteBloodObjs().y < covid19Obj.y + covid19Obj.height ||
+        whiteBloodObjs().y + whiteBloodObjs().height > covid19Obj.y
+      )
+    ) {
+      return true;
+    }
+    return false;
+  };
