@@ -6,23 +6,32 @@ const covid19Obj = {
     y: 250,
     width: 100,
     height: 100,
-    velX: 0,
-    velY: 2
+    radius: this.width/2 + this.height^2/(8*this.width)
     
 };
+
+const lungs = {
+    x: 800,
+    y: 230,
+    width: 100,
+    height: 100,
+    img: new Image()
+}
+lungs.img.src = `./Images/lungs2.png`;
 
 // make random y and random height
 
 const randomY = 100 + Math.random() * 300;
-const randomHeight = 50 + Math.random() * 150;
-const randomWidth = 60 + Math.random() * 150;
+const randomHeight = 70 + Math.random() * 150;
+const randomWidth = 40 + Math.random() * 100;
 const whiteBloodObjs = () => {
     const whiteBloodObj ={
         x :800,
         y : 100 + Math.random() * 300,
-        width : 60 + Math.random() * 150,
-        height : 50 + Math.random() * 150,
-        img : new Image()
+        width : 40 + Math.random() * 100,
+        height : 70 + Math.random() * 150,
+        img : new Image(),
+        radius: this.width/2 + this.height^2/(8*this.width)
     };
     whiteBloodObj.img.src = `./Images/white-blood-cell.png`;
     return whiteBloodObj;
@@ -36,11 +45,12 @@ const startBtn = document.querySelector(`.btn`);
 startBtn.addEventListener(`click`, () => {
     startGame();
 });
-
+let drawEverInterval;
+let whiteBloodInterval;
 const startGame = () => {
     // introText();
-    setInterval(drawEverything, 50);
-    setInterval(whiteBloodCell, 4000);
+    drawEverInterval = setInterval(drawEverything, 30);
+    whiteBloodInterval = setInterval(whiteBloodCell, 3000);
 }
 
 const clearAll = () => {
@@ -62,16 +72,24 @@ const drawEverything = () => {
     covid19Img.src = `./Images/covid-19.png`;
     context.drawImage(covid19Img, covid19Obj.x, covid19Obj.y, covid19Obj.width, covid19Obj.height);
     whiteBloodArr.forEach((elem, i) => {
-        drawWhiteBlood(elem);
-        if(elem.x === -450){
+        if(elem.x === -100){
             score += 1;
+            console.log(`score: ${score}`);
             whiteBloodArr.splice(i, 1);
-            console.log(score);
+
         }
-        else if(collisionDetection(elem)) {
-            console.log(`HIT`);
+        else if(collisionDetection(covid19Obj, elem)) {
+            console.log(`hit`);
         } 
+        // else if(score === 5){
+        //     lungsTime();
+        // }
+        drawObject(elem);
     });
+    if (score > 5){
+        lungsTime();
+    }
+    
 }
 
 // movements
@@ -79,11 +97,11 @@ document.addEventListener(`keydown`, event => {
     switch(event.code){
         case `KeyW`:
             if(covid19Obj.y >= 25)
-            covid19Obj.y -= 50;
+            covid19Obj.y -= 25;
             break;
         case `KeyS`:
-            if(covid19Obj.y <= 350)
-            covid19Obj.y += 50;
+            if(covid19Obj.y <= 370)
+            covid19Obj.y += 25;
             break;
         default:
             alert("Can only use UP and DOWN arrows!")
@@ -91,15 +109,23 @@ document.addEventListener(`keydown`, event => {
 });
 
 //obstacle
-const drawWhiteBlood = (object) => {
+const drawObject = (object) => {
     object.x -= 4;
     context.drawImage(object.img, object.x, object.y, object.width, object.height);
 
 }
 
+const drawLung = () => {
+    if (lungs.x === -100){
+        console.log(`YOU LOSE`);
+    }
+    lungs.x -= 3;
+    context.drawImage(lungs.img, lungs.x, lungs.y, lungs.width, lungs.height);
+}
+
 
 const whiteBloodCell = () => {
-        if(whiteBloodArr.length < 6) {
+        if(whiteBloodArr.length < 3) {
             whiteBloodArr.push(whiteBloodObjs())
         }
         
@@ -109,16 +135,41 @@ const whiteBloodCell = () => {
 
 
 
-collisionDetection = (covid19Obj) => {
+const collisionDetection = (covid19Obj, secondObj ) => {
     if (
-      !(
-        whiteBloodObjs().x < covid19Obj.x + covid19Obj.width ||
-        whiteBloodObjs().x + whiteBloodObjs().width < covid19Obj.x ||
-        whiteBloodObjs().y < covid19Obj.y + covid19Obj.height ||
-        whiteBloodObjs().y + whiteBloodObjs().height > covid19Obj.y
+      (
+        covid19Obj.x + covid19Obj.width < secondObj.x ||
+        covid19Obj.x > secondObj.x + secondObj.width ||
+        covid19Obj.y > secondObj.y + secondObj.height  ||
+        covid19Obj.y + covid19Obj.height < secondObj.y
       )
     ) {
-      return true;
+      return false;
     }
-    return false;
-  };
+    return true;
+
+//     const dx = covid19Obj.x - elem.x;
+//     const dy= covid19Obj.y - elem.y;
+
+//     const distance = Math.sqrt(dx * dx + dy * dy);
+
+//     if (distance <= covid19Obj.radius + elem.radius){
+//         return true;
+//     } else {
+//         return false;
+//     }
+  }
+
+
+
+
+  const lungsTime = () => {
+        // clearInterval(drawEverInterval);
+        clearInterval(whiteBloodInterval);
+        // clearAll()
+       drawLung();
+
+
+      
+
+  }
