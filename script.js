@@ -6,7 +6,7 @@ const covid19Obj = {
     y: 250,
     width: 100,
     height: 100,
-    radius: this.width/2 + this.height^2/(8*this.width)
+    radius: 100/2
     
 };
 
@@ -28,12 +28,14 @@ const whiteBloodObjs = () => {
     const whiteBloodObj ={
         x :800,
         y : 100 + Math.random() * 300,
-        width : 40 + Math.random() * 100,
-        height : 70 + Math.random() * 150,
+        width : 50 + Math.random() * 100,
+        height : null,
         img : new Image(),
-        radius: this.width/2 + this.height^2/(8*this.width)
+        radius: null
     };
     whiteBloodObj.img.src = `./Images/white-blood-cell.png`;
+    whiteBloodObj.height = whiteBloodObj.width;
+    whiteBloodObj.radius = whiteBloodObj.width/2;
     return whiteBloodObj;
 }
 
@@ -79,7 +81,7 @@ const drawEverything = () => {
 
         }
         else if(collisionDetection(covid19Obj, elem)) {
-            console.log(`hit`);
+            gameOver();
         } 
         // else if(score === 5){
         //     lungsTime();
@@ -95,11 +97,13 @@ const drawEverything = () => {
 // movements
 document.addEventListener(`keydown`, event => {
     switch(event.code){
-        case `KeyW`:
+        case `ArrowUp`:
+            event.preventDefault();
             if(covid19Obj.y >= 25)
             covid19Obj.y -= 25;
             break;
-        case `KeyS`:
+        case `ArrowDown`:
+            event.preventDefault();
             if(covid19Obj.y <= 370)
             covid19Obj.y += 25;
             break;
@@ -135,29 +139,29 @@ const whiteBloodCell = () => {
 
 
 
-const collisionDetection = (covid19Obj, secondObj ) => {
-    if (
-      (
-        covid19Obj.x + covid19Obj.width < secondObj.x ||
-        covid19Obj.x > secondObj.x + secondObj.width ||
-        covid19Obj.y > secondObj.y + secondObj.height  ||
-        covid19Obj.y + covid19Obj.height < secondObj.y
-      )
-    ) {
-      return false;
+const collisionDetection = (covid19Obj, elem ) => {
+    // if (
+    //   (
+    //     covid19Obj.x + covid19Obj.width < secondObj.x ||
+    //     covid19Obj.x > secondObj.x + secondObj.width ||
+    //     covid19Obj.y > secondObj.y + secondObj.height  ||
+    //     covid19Obj.y + covid19Obj.height < secondObj.y
+    //   )
+    // ) {
+    //   return false;
+    // }
+    // return true;
+
+    const dx = covid19Obj.x - elem.x;
+    const dy= covid19Obj.y - elem.y;
+
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance <= covid19Obj.radius + elem.radius - 15){
+        return true;
+    } else {
+        return false;
     }
-    return true;
-
-//     const dx = covid19Obj.x - elem.x;
-//     const dy= covid19Obj.y - elem.y;
-
-//     const distance = Math.sqrt(dx * dx + dy * dy);
-
-//     if (distance <= covid19Obj.radius + elem.radius){
-//         return true;
-//     } else {
-//         return false;
-//     }
   }
 
 
@@ -168,8 +172,17 @@ const collisionDetection = (covid19Obj, secondObj ) => {
         clearInterval(whiteBloodInterval);
         // clearAll()
        drawLung();
+  }
 
-
-      
-
+  const gameOver = () => {
+      clearAll();
+      clearInterval(drawEverInterval);
+    //   clearInterval(whiteBloodInterval);
+      clearAll();
+      context.font = `100px Arial`;
+      context.fillStyle = `red`;
+      context.textAlign = `center`;
+      context.fillText(`GAME OVER`, canvas.width/2, canvas.height/2 + 100);
+      context.font= `23px Arial`;
+      context.fillText(`NOT STRONG ENOUGH AGAINST THESE WHITE BLOOD CELLS`, canvas.width/2, canvas.height/2 -100);
   }
