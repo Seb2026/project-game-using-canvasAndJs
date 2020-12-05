@@ -12,7 +12,7 @@ const covid19Obj = {
 
 const lungs = {
     x: 800,
-    y: 230,
+    y: 100,
     width: 100,
     height: 100,
     img: new Image()
@@ -42,6 +42,8 @@ const whiteBloodObjs = () => {
 const whiteBloodArr = [];
 let score = 0;
 
+document.querySelector(`#instructions2`);
+
 
 const startBtn = document.querySelector(`.btn`);
 startBtn.addEventListener(`click`, () => {
@@ -49,7 +51,12 @@ startBtn.addEventListener(`click`, () => {
 });
 let drawEverInterval;
 let whiteBloodInterval;
+
 const startGame = () => {
+    startGame2();
+}
+const startGame2 = () => {
+    clearAll();
     // introText();
     drawEverInterval = setInterval(drawEverything, 30);
     whiteBloodInterval = setInterval(whiteBloodCell, 3000);
@@ -68,6 +75,7 @@ const clearAll = () => {
 
 const drawEverything = () => {
     const backgroundImg = new Image();
+    let isGameOver = false;
     backgroundImg.src = `./Images/covid-background-inside-body.jpg`;
     context.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
     const covid19Img = new Image();
@@ -78,18 +86,21 @@ const drawEverything = () => {
             score += 1;
             console.log(`score: ${score}`);
             whiteBloodArr.splice(i, 1);
-
+            
         }
         else if(collisionDetection(covid19Obj, elem)) {
-            gameOver();
+            isGameOver = true;
         } 
-        // else if(score === 5){
-        //     lungsTime();
-        // }
         drawObject(elem);
     });
-    if (score > 5){
+    if(isGameOver) {
+        gameOver();       
+    }
+    if (score > 10){
         lungsTime();
+    }
+    if(collisionDetectLungs(lungs)){
+        winGame();
     }
     
 }
@@ -100,12 +111,12 @@ document.addEventListener(`keydown`, event => {
         case `ArrowUp`:
             event.preventDefault();
             if(covid19Obj.y >= 25)
-            covid19Obj.y -= 25;
+            covid19Obj.y -= 30;
             break;
         case `ArrowDown`:
             event.preventDefault();
             if(covid19Obj.y <= 370)
-            covid19Obj.y += 25;
+            covid19Obj.y += 30;
             break;
         default:
             alert("Can only use UP and DOWN arrows!")
@@ -121,9 +132,10 @@ const drawObject = (object) => {
 
 const drawLung = () => {
     if (lungs.x === -100){
-        console.log(`YOU LOSE`);
+        gameOver2();
     }
-    lungs.x -= 3;
+    lungs.x -= 5;
+    lungs.y += 1;
     context.drawImage(lungs.img, lungs.x, lungs.y, lungs.width, lungs.height);
 }
 
@@ -136,7 +148,7 @@ const whiteBloodCell = () => {
     // }
 }
 
-
+// collision
 
 
 const collisionDetection = (covid19Obj, elem ) => {
@@ -164,6 +176,23 @@ const collisionDetection = (covid19Obj, elem ) => {
     }
   }
 
+  const collisionDetectLungs = (secondObj) => {
+          if (
+      (
+        covid19Obj.x + covid19Obj.width - 23 < secondObj.x ||
+        covid19Obj.x > secondObj.x + secondObj.width + 3  ||
+        covid19Obj.y > secondObj.y + secondObj.height + 3  ||
+        covid19Obj.y + covid19Obj.height - 23 < secondObj.y
+      )
+    ) {
+      return false;
+    }
+    return true;
+  }
+
+
+  
+
 
 
 
@@ -172,12 +201,12 @@ const collisionDetection = (covid19Obj, elem ) => {
         clearInterval(whiteBloodInterval);
         // clearAll()
        drawLung();
+
   }
 
   const gameOver = () => {
-      clearAll();
+      clearInterval(whiteBloodInterval);
       clearInterval(drawEverInterval);
-    //   clearInterval(whiteBloodInterval);
       clearAll();
       context.font = `100px Arial`;
       context.fillStyle = `red`;
@@ -185,4 +214,26 @@ const collisionDetection = (covid19Obj, elem ) => {
       context.fillText(`GAME OVER`, canvas.width/2, canvas.height/2 + 100);
       context.font= `23px Arial`;
       context.fillText(`NOT STRONG ENOUGH AGAINST THESE WHITE BLOOD CELLS`, canvas.width/2, canvas.height/2 -100);
+
   }
+
+  const gameOver2 = () => {
+    clearInterval(whiteBloodInterval);
+    clearInterval(drawEverInterval);
+    clearAll();
+    context.font = `100px Arial`;
+    context.fillStyle = `red`;
+    context.textAlign = `center`;
+    context.fillText(`GAME OVER`, canvas.width/2, canvas.height/2 + 100);
+    context.font= `23px Arial`;
+    context.fillText(`YOU MISSED THE LUNGS! `, canvas.width/2, canvas.height/2 -100);
+    
+}
+
+const winGame = () => {
+    clearInterval(whiteBloodInterval);
+    clearInterval(drawEverInterval);
+    clearAll();
+    const ending = document.querySelector(`#gameover`);
+    ending.style.display = `block`;
+}
