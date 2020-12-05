@@ -75,7 +75,7 @@ const startGame2 = () => {
     clearAll();
     // introText();
     drawEverInterval = setInterval(drawEverything, 30);
-    whiteBloodInterval = setInterval(whiteBloodCell, 3000);
+    whiteBloodInterval = setInterval(whiteBloodCell, 2000);
 }
 
 const clearAll = () => {
@@ -135,7 +135,7 @@ document.addEventListener(`keydown`, event => {
             covid19Obj.y += 30;
             break;
         default:
-            alert("Can only use UP and DOWN arrows!")
+            console.log(`Only UP and DOWN can be used!`)
     }
 });
 
