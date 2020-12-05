@@ -13,6 +13,7 @@ h3{
 
 #canvas {
     border: 3px solid #dc3545;
+    display: none;
 }
 
 #canvas-container{
@@ -70,4 +71,6 @@ p {
     position: absolute;
     left: 1135px;
     top: 400px;
+    display: none;
 }
+

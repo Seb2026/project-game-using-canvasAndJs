@@ -27,8 +27,8 @@ const randomWidth = 40 + Math.random() * 100;
 const whiteBloodObjs = () => {
     const whiteBloodObj ={
         x :800,
-        y : 100 + Math.random() * 300,
-        width : 50 + Math.random() * 100,
+        y : 20 + Math.random() * 300,
+        width : 70 + Math.random() * 100,
         height : null,
         img : new Image(),
         radius: null
@@ -59,6 +59,10 @@ const startGame = () => {
     startGame2();
     const instructionsLeft = document.querySelector(`#instructions2`);
     instructionsLeft.style.display = `block`;
+    const instructionsRight = document.querySelector(`#instructions3`);
+    instructionsRight.style.display = `block`;
+    const canvasBlock = document.querySelector(`#canvas`);
+    canvasBlock.style.display = `block`;
 }
 const startGame2 = () => {
     clearAll();
@@ -90,8 +94,7 @@ const drawEverything = () => {
         if(elem.x === -100){
             score += 1;
             updateTotal();
-            console.log(`score: ${score}`);
-            whiteBloodArr.splice(i, 1);
+            // whiteBloodArr.splice(i, 1);
             
         }
         else if(collisionDetection(covid19Obj, elem)) {
@@ -102,7 +105,7 @@ const drawEverything = () => {
     if(isGameOver) {
         gameOver();       
     }
-    if (score > 10){
+    if (score > 13){
         lungsTime();
     }
     if(collisionDetectLungs(lungs)){
@@ -141,13 +144,13 @@ const drawLung = () => {
         gameOver2();
     }
     lungs.x -= 5;
-    lungs.y += 1;
+    lungs.y += 1.5;
     context.drawImage(lungs.img, lungs.x, lungs.y, lungs.width, lungs.height);
 }
 
 
 const whiteBloodCell = () => {
-        if(whiteBloodArr.length < 3) {
+        if(whiteBloodArr.length < 18) {
             whiteBloodArr.push(whiteBloodObjs())
         }
         
