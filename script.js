@@ -48,9 +48,14 @@ updateTotal = () => {
 }
 
 
-const startBtn = document.querySelector(`.btn`);
+const startBtn = document.querySelector(`#btn1`);
 startBtn.addEventListener(`click`, () => {
     startGame();
+});
+
+const tryAgainBtn = document.querySelector(`#btn2`);
+tryAgainBtn.addEventListener(`click`, () => {
+    location.reload();
 });
 let drawEverInterval;
 let whiteBloodInterval;
@@ -63,6 +68,8 @@ const startGame = () => {
     instructionsRight.style.display = `block`;
     const canvasBlock = document.querySelector(`#canvas`);
     canvasBlock.style.display = `block`;
+    const firstBtn = document.querySelector(`#btn1`);
+    firstBtn.style.display = `none`;
 }
 const startGame2 = () => {
     clearAll();
@@ -146,6 +153,8 @@ const drawLung = () => {
     lungs.x -= 5;
     lungs.y += 1.5;
     context.drawImage(lungs.img, lungs.x, lungs.y, lungs.width, lungs.height);
+
+    
 }
 
 
@@ -223,7 +232,7 @@ const collisionDetection = (covid19Obj, elem ) => {
       context.fillText(`GAME OVER`, canvas.width/2, canvas.height/2 + 100);
       context.font= `23px Arial`;
       context.fillText(`NOT STRONG ENOUGH AGAINST THESE WHITE BLOOD CELLS`, canvas.width/2, canvas.height/2 -100);
-
+      tryAgainBtn.style.display = `block`;  
   }
 
   const gameOver2 = () => {
@@ -236,7 +245,7 @@ const collisionDetection = (covid19Obj, elem ) => {
     context.fillText(`GAME OVER`, canvas.width/2, canvas.height/2 + 100);
     context.font= `23px Arial`;
     context.fillText(`YOU MISSED THE LUNGS! `, canvas.width/2, canvas.height/2 -100);
-    
+    tryAgainBtn.style.display = `block`;
 }
 
 const winGame = () => {
@@ -245,4 +254,5 @@ const winGame = () => {
     clearAll();
     const ending = document.querySelector(`#gameover`);
     ending.style.display = `block`;
+    tryAgainBtn.style.display = `block`;
 }
