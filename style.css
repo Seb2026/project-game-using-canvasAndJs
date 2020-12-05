@@ -2,6 +2,14 @@ body{
     background-color: black;
 }
 
+h2{
+    color: #dc3545;
+
+}
+
+h3{
+    color: #dc3545;
+}
 
 #canvas {
     border: 3px solid #dc3545;
@@ -41,3 +49,25 @@ img {
     width: 800px;
 }
 
+p {
+    color: #dc3545;
+}
+
+#instructions2 {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    position: absolute;
+    top: 400px;
+    left: 15px;
+    display: none;
+}
+
+#instructions3 {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    position: absolute;
+    left: 1135px;
+    top: 400px;
+}

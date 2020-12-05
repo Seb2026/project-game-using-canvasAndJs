@@ -42,7 +42,10 @@ const whiteBloodObjs = () => {
 const whiteBloodArr = [];
 let score = 0;
 
-document.querySelector(`#instructions2`);
+updateTotal = () => {
+    const totalCell = document.querySelector(`#instructions2 span`);
+    return totalCell.innerHTML = score;
+}
 
 
 const startBtn = document.querySelector(`.btn`);
@@ -54,6 +57,8 @@ let whiteBloodInterval;
 
 const startGame = () => {
     startGame2();
+    const instructionsLeft = document.querySelector(`#instructions2`);
+    instructionsLeft.style.display = `block`;
 }
 const startGame2 = () => {
     clearAll();
@@ -84,6 +89,7 @@ const drawEverything = () => {
     whiteBloodArr.forEach((elem, i) => {
         if(elem.x === -100){
             score += 1;
+            updateTotal();
             console.log(`score: ${score}`);
             whiteBloodArr.splice(i, 1);
             
